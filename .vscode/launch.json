@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Parse gauge dir",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/parse_gauge_dir.py",
+      "console": "integratedTerminal",
+      "envFile": "${workspaceFolder}/.env",
+      "args": []
+    }
+  ]
+}

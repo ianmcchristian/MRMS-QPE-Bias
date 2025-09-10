@@ -1,0 +1,17 @@
+# python
+.venv/
+__pycache__/
+*.pyc
+
+# data
+data/raw/
+data/interim/
+
+# env & OS
+.env
+.DS_Store
+
+# vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
