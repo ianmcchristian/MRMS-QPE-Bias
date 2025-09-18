@@ -78,7 +78,15 @@ def parse_gauge_file_to_table1(fname: str, qc_keep=None) -> pd.DataFrame:
 
 if __name__ == "__main__":
     FNAME = "/qvs-storage/VMRMS/2025/08/gauge/ALLSETS/GAUGE_1H_MRMS_QC.20250831.230000"
-    df = parse_gauge_file_to_table1(FNAME, qc_keep=None) # or qc_keep={0}
+    df = parse_gauge_file_to_table1(FNAME, qc_keep=None)  # or qc_keep={0}
     print(f"Parsed rows: {len(df)}")
-    print("Showing first 10 rows from file:")
-    print(df.head(10).to_string(index=False))
+
+    # Filter out zero-precip rows
+    nonzero = df[df["Obs value"] > 0]
+
+    print("\nFirst 10 rows with non-zero Obs value:")
+    if nonzero.empty:
+        print("No non-zero observations found in this file.")
+    else:
+        print(nonzero.head(10).to_string(index=False))
+
