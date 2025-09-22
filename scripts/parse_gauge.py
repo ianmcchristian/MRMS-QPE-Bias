@@ -4,7 +4,7 @@ import re
 import pandas as pd
 
 # Default file to use if none is provided by callers
-FNAME = "/qvs-storage/VMRMS/2025/08/gauge/ALLSETS/GAUGE_1H_MRMS_QC.20250831.230000"
+FNAME = "/qvs-storage/VMRMS/2025/08/gauge/ALLSETS/GAUGE_1H_MRMS_QC.20250811.230000"
 
 
 # Helper Functions
@@ -90,4 +90,3 @@ if __name__ == "__main__":
         print("No non-zero observations found in this file.")
     else:
         print(nonzero.head(10).to_string(index=False))
-
