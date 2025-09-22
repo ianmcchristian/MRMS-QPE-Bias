@@ -3,8 +3,11 @@ from pathlib import Path
 import re
 import pandas as pd
 
-# Helper Functions
+# Default file to use if none is provided by callers
+FNAME = "/qvs-storage/VMRMS/2025/08/gauge/ALLSETS/GAUGE_1H_MRMS_QC.20250831.230000"
 
+
+# Helper Functions
 def infer_file_time_utc(fname: str) -> pd.Timestamp:
     """Parse ...YYYYMMDD.HH0000 from filename and return tz-aware UTC timestamp."""
     m = re.search(r'\.(\d{8})\.(\d{2})0000$', Path(fname).name)
@@ -22,7 +25,6 @@ def line_is_data(s: str) -> bool:
     return not any(k in s for k in bad_keys)
 
 # Main Parsing Function
-
 def parse_gauge_file_to_table1(fname: str, qc_keep=None) -> pd.DataFrame:
     """
     Return DataFrame with columns:
@@ -77,7 +79,6 @@ def parse_gauge_file_to_table1(fname: str, qc_keep=None) -> pd.DataFrame:
     return out
 
 if __name__ == "__main__":
-    FNAME = "/qvs-storage/VMRMS/2025/08/gauge/ALLSETS/GAUGE_1H_MRMS_QC.20250831.230000"
     df = parse_gauge_file_to_table1(FNAME, qc_keep=None)  # or qc_keep={0}
     print(f"Parsed rows: {len(df)}")
 
